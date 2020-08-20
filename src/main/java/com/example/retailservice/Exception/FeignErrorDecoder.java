@@ -9,7 +9,7 @@ public class FeignErrorDecoder implements ErrorDecoder {
     public BadRequestException decode(String s, Response response) {
         switch (response.status())
         {
-            case 500:
+            case 400:
                 return new BadRequestException("Bad Request");
 
             default:

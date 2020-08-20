@@ -20,9 +20,11 @@ public class RetailController
     private RetailService retailService;
 
     @PostMapping("/add")
-    public ResponseEntity<RetailEntity> RetailAdd(@RequestBody RetailEntity retailEntity) throws BadRequestException {   RetailEntity response =retailService.checkThroughFeign(retailEntity);
-        return response != null ? new ResponseEntity<>(response, HttpStatus.CREATED) :  new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    public Object RetailAdd(@RequestBody RetailEntity retailEntity) throws BadRequestException {
+        //RetailEntity response =retailService.checkThroughFeign(retailEntity);
+        //return response != null ? new ResponseEntity<>(response, HttpStatus.CREATED) :  new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 
+        return retailService.checkThroughFeign(retailEntity);
 
     }
 
