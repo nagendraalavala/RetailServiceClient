@@ -2,7 +2,6 @@ package com.example.retailservice;
 
 
 import com.example.retailservice.Exception.FeignErrorDecoder;
-import feign.codec.ErrorDecoder;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.openfeign.EnableFeignClients;
@@ -16,10 +15,6 @@ public class RetailServiceApplication {
 		SpringApplication.run(RetailServiceApplication.class, args);
 	}
 
-	@Bean
-	public ErrorDecoder errorDecoder()
-	{
-		return new FeignErrorDecoder();
-	}
+
 
 }

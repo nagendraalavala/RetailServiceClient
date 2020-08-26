@@ -23,6 +23,7 @@ public class RetailService
 
     private RetailEntity retailEntity;
 
+
     @Autowired
     feignClient feign;
     private RetailRepository repo;
@@ -37,14 +38,16 @@ public class RetailService
     }
 
 
-    public ResponseEntity<Object> checkThroughFeign(RetailEntity retailEntity)
+    public ResponseEntity<RetailEntity> checkThroughFeign(RetailEntity retailEntity)
     {
         ProductEntity productEntity = feign.productRespone(retailEntity.getId());
-        if(productEntity.getStock().equals("Active"))
-        {
+        if("Active".equals(productEntity.getStock())) {
+
             return new ResponseEntity<>(repo.save(retailEntity), HttpStatus.CREATED);
         }
-       return new ResponseEntity<>(new BadRequestException("Bad Request"),HttpStatus.BAD_REQUEST);
+        else
+            return new ResponseEntity(new BadRequestException("Something wrong"), HttpStatus.BAD_REQUEST);
+
     }
 
     public Optional<RetailEntity> getRetail(Long id)

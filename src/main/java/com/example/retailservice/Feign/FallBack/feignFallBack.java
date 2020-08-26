@@ -13,18 +13,12 @@ public class feignFallBack implements feignClient {
 
     Logger logger = LoggerFactory.getLogger(feignFallBack.class);
 
-    private RetailService retailService;
-
-    @Autowired
-    public feignFallBack(RetailService retailService) {
-        this.retailService = retailService;
-    }
-
     @Override
     public ProductEntity productRespone(Long id)
     {
         logger.info("FallBack method Executed");
-        return null;
+        ProductEntity productEntity = new ProductEntity();
+        return productEntity;
     }
 
 }
